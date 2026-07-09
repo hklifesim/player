@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-HK">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -66,6 +67,7 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans HK', sans-serif;
       overflow: hidden;
     }
+
     #loading {
       position: fixed;
       inset: 0;
@@ -77,23 +79,64 @@
       z-index: 9999;
       transition: opacity 0.4s;
     }
-    #loading.hidden { opacity: 0; pointer-events: none; }
-    .logo { font-size: 72px; margin-bottom: 20px; animation: bounce 2s infinite; }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+
+    #loading.hidden {
+      opacity: 0;
+      pointer-events: none;
     }
-    .title { font-size: 24px; font-weight: bold; margin-bottom: 8px; }
-    .subtitle { font-size: 13px; color: #FBBF24; margin-bottom: 40px; }
+
+    .logo {
+      font-size: 72px;
+      margin-bottom: 20px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #FBBF24;
+      margin-bottom: 40px;
+    }
+
     .spinner {
-      width: 40px; height: 40px;
-      border: 3px solid rgba(255,255,255,0.1);
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(255, 255, 255, 0.1);
       border-top-color: #FBBF24;
       border-radius: 50%;
       animation: spin 1s linear infinite;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .footer { position: absolute; bottom: 20px; font-size: 11px; color: rgba(255,255,255,0.4); }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
     .embedded-from {
       position: fixed;
       left: 0;
@@ -104,23 +147,28 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
-      color: rgba(255,255,255,0.46);
+      color: rgba(255, 255, 255, 0.46);
       font-size: 10px;
       font-weight: 600;
       letter-spacing: .02em;
       line-height: 1;
       pointer-events: none;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.32);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.32);
     }
+
     .embedded-from img {
       width: 12px;
       height: 12px;
       border-radius: 3px;
       opacity: .72;
     }
-    .is-embedded-frame .embedded-from { display: flex; }
+
+    .is-embedded-frame .embedded-from {
+      display: flex;
+    }
   </style>
 </head>
+
 <body>
   <!-- Loading Screen -->
   <div id="loading">
@@ -130,24 +178,19 @@
     <div class="spinner"></div>
     <div class="footer">首次載入需要 3-5 秒，請耐心等候</div>
   </div>
-  <div class="embedded-from" aria-hidden="true">
-    <img src="favicon.png" alt="">
-    <span>Embedded from hklifesim.com</span>
-  </div>
-
   <script>
-    window.addEventListener('load', function(ev) {
+    window.addEventListener('load', function (ev) {
       _flutter.loader.loadEntrypoint({
         serviceWorker: { serviceWorkerVersion: serviceWorkerVersion },
-        onEntrypointLoaded: async function(engineInitializer) {
+        onEntrypointLoaded: async function (engineInitializer) {
           let appRunner = await engineInitializer.initializeEngine({
             canvasKitBaseUrl: "canvaskit/"
           });
           await appRunner.runApp();
           // Hide loading screen
-          setTimeout(function() {
+          setTimeout(function () {
             document.getElementById('loading').classList.add('hidden');
-            setTimeout(function() {
+            setTimeout(function () {
               document.getElementById('loading').remove();
             }, 500);
           }, 500);
@@ -156,4 +199,5 @@
     });
   </script>
 </body>
+
 </html>
