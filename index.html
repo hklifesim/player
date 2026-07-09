@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <!-- ═══════════ SEO ═══════════ -->
+  <title>香港人生模擬器 · Web Demo | 免費玩</title>
+  <meta name="description" content="🎮 香港人生 Life Sim！由 6 歲開始，體驗 DSE、上車、移民、家族傳承。Web Demo 免費玩，完整版即將上架 App Store。">
+  <meta name="keywords" content="香港,遊戲,life sim,DSE,BitLife,HK,indie game,獨立遊戲,人生模擬器">
+  <meta name="author" content="HK Life Sim">
+
+  <!-- ═══════════ OpenGraph (Facebook / Threads / LinkedIn) ═══════════ -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="香港人生模擬器 · Web Demo">
+  <meta property="og:description" content="🎮 由 6 歲開始，體驗完整香港人生：DSE、上車、移民、家族傳承。免費 Web Demo!">
+  <meta property="og:image" content="https://YOUR-DOMAIN.com/preview.png">
+  <meta property="og:url" content="https://YOUR-DOMAIN.com">
+  <meta property="og:locale" content="zh_HK">
+
+  <!-- ═══════════ Twitter Card ═══════════ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="香港人生模擬器 · Web Demo">
+  <meta name="twitter:description" content="🎮 由 6 歲開始，體驗完整香港人生 · 免費 Web Demo!">
+  <meta name="twitter:image" content="https://YOUR-DOMAIN.com/preview.png">
+
+  <!-- ═══════════ PWA / Mobile ═══════════ -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <meta name="theme-color" content="#1A1A2E">
+
+  <script>
+    (function markEmbeddedFrame() {
+      if (window.top !== window.self) {
+        document.documentElement.classList.add("is-embedded-frame");
+      }
+    })();
+  </script>
+
+  <!-- ═══════════ Google Analytics (Optional，之後填 tracking ID) ═══════════ -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
+
+  <!-- Flutter Web Setup -->
+  <script>
+    const serviceWorkerVersion = "2026070902";
+  </script>
+  <script src="i18n-loader.js"></script>
+  <script src="flutter.js" defer></script>
+
+  <!-- Loading Screen Style -->
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans HK', sans-serif;
+      overflow: hidden;
+    }
+    #loading {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      z-index: 9999;
+      transition: opacity 0.4s;
+    }
+    #loading.hidden { opacity: 0; pointer-events: none; }
+    .logo { font-size: 72px; margin-bottom: 20px; animation: bounce 2s infinite; }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .title { font-size: 24px; font-weight: bold; margin-bottom: 8px; }
+    .subtitle { font-size: 13px; color: #FBBF24; margin-bottom: 40px; }
+    .spinner {
+      width: 40px; height: 40px;
+      border: 3px solid rgba(255,255,255,0.1);
+      border-top-color: #FBBF24;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .footer { position: absolute; bottom: 20px; font-size: 11px; color: rgba(255,255,255,0.4); }
+    .embedded-from {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: max(8px, env(safe-area-inset-bottom));
+      z-index: 12;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.46);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .02em;
+      line-height: 1;
+      pointer-events: none;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.32);
+    }
+    .embedded-from img {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      opacity: .72;
+    }
+    .is-embedded-frame .embedded-from { display: flex; }
+  </style>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading">
+    <div class="logo">🎮</div>
+    <div class="title">香港人生模擬器</div>
+    <div class="subtitle">🇭🇰 Web Demo</div>
+    <div class="spinner"></div>
+    <div class="footer">首次載入需要 3-5 秒，請耐心等候</div>
+  </div>
+  <div class="embedded-from" aria-hidden="true">
+    <img src="favicon.png" alt="">
+    <span>Embedded from hklifesim.com</span>
+  </div>
+
+  <script>
+    window.addEventListener('load', function(ev) {
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: { serviceWorkerVersion: serviceWorkerVersion },
+        onEntrypointLoaded: async function(engineInitializer) {
+          let appRunner = await engineInitializer.initializeEngine({
+            canvasKitBaseUrl: "canvaskit/"
+          });
+          await appRunner.runApp();
+          // Hide loading screen
+          setTimeout(function() {
+            document.getElementById('loading').classList.add('hidden');
+            setTimeout(function() {
+              document.getElementById('loading').remove();
+            }, 500);
+          }, 500);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

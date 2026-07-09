@@ -1,0 +1,12 @@
+{
+  "name": "hklifesim-player",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "serve": "node server.mjs",
+    "check": "node scripts/check-resources.mjs"
+  },
+  "devDependencies": {}
+}

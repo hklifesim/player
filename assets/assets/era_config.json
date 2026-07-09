@@ -1,0 +1,168 @@
+{
+  "eras": [
+    {
+      "id": "y2k",
+      "name": "千禧年代",
+      "years": "2004-2030年",
+      "icon": "🌆",
+      "description": "SARS 剛過，港式黃金 10 年。iPhone 面世、雨傘、社運、疫情，一代人嘅集體回憶。",
+      "difficulty": "Standard",
+      "difficultyStars": 3,
+      "themeColor": "#E85F5C",
+      "startingBank": 8000,
+      "annualLivingCost": 50000,
+      "salaryMultiplier": 0.8,
+      "propertyPriceMultiplier": 3.5,
+      "highlights": [
+        "京奧興奮",
+        "雨傘 & 社運",
+        "移民潮"
+      ],
+      "isLocked": false,
+      "availableJobIds": [
+        "software_engineer",
+        "financial_analyst",
+        "nurse",
+        "engineer",
+        "designer",
+        "accountant",
+        "product_manager",
+        "plumber",
+        "deliveryman",
+        "teacher",
+        "police",
+        "ux_designer",
+        "kol",
+        "uber_driver",
+        "stock_broker",
+        "restaurant_owner"
+      ],
+      "ageEvents": {
+        "6": "2004年，SARS 剛過，你返緊小一。",
+        "10": "2008年，京奧點火儀式令你興奮。",
+        "12": "2010年，iPhone 4 面世。同學開始有 3G。",
+        "16": "2014年，雨傘運動爆發。金鐘/旺角/銅鑼灣被佔領。",
+        "18": "2016年，你完成中學。iPhone 已普及。",
+        "21": "2019年，社會運動。你身邊人分成兩極。",
+        "22": "2020年，新冠疫情爆發。人人 WFH。",
+        "24": "2022年，BNO 移民潮。朋友一個個走。",
+        "30": "2028年，AI 開始改變工作模式。"
+      }
+    },
+    {
+      "id": "modern",
+      "name": "近未來",
+      "years": "2024-2050年",
+      "icon": "🤖",
+      "description": "AI 全面接管，氣候危機，加密貨幣震盪。生活喺不確定嘅未來。",
+      "difficulty": "Expert",
+      "difficultyStars": 5,
+      "themeColor": "#4A5FDB",
+      "startingBank": 10000,
+      "annualLivingCost": 72000,
+      "salaryMultiplier": 1.0,
+      "propertyPriceMultiplier": 5.0,
+      "highlights": [
+        "🤖 AI 統治",
+        "👽 UFO 目擊",
+        "🚀 太空移民"
+      ],
+      "isLocked": false,
+      "availableJobIds": [
+        "software_engineer",
+        "financial_analyst",
+        "nurse",
+        "engineer",
+        "designer",
+        "accountant",
+        "product_manager",
+        "plumber",
+        "deliveryman",
+        "teacher",
+        "police",
+        "ux_designer",
+        "kol",
+        "uber_driver"
+      ],
+      "ageEvents": {
+        "18": "2024年，你完成中學學業，香港樓價係你年薪嘅40倍。",
+        "22": "通脹持續，一個人外賣平均要 $80。",
+        "25": "同齡朋友開始討論係咪移民。",
+        "30": "你嘅月薪追唔上租金升幅。",
+        "35": "AI 開始取代部分辦公室工作。"
+      }
+    },
+    {
+      "id": "eighties",
+      "name": "黃金盛世",
+      "years": "1980年代",
+      "icon": "📈",
+      "description": "霓虹燈、魚翅撈飯、娛樂至上。炒股炒樓嘅黃金期，但97問題陰影籠罩。",
+      "difficulty": "Easy",
+      "difficultyStars": 1,
+      "themeColor": "#993C1D",
+      "startingBank": 5000,
+      "annualLivingCost": 8000,
+      "salaryMultiplier": 0.08,
+      "propertyPriceMultiplier": 0.05,
+      "highlights": [
+        "炒股炒樓黃金期",
+        "四大天王年代",
+        "97移民潮"
+      ],
+      "isLocked": true,
+      "availableJobIds": [
+        "stock_broker",
+        "factory_worker",
+        "police_80s",
+        "teacher",
+        "nurse",
+        "accountant",
+        "restaurant_owner",
+        "tailor"
+      ],
+      "ageEvents": {
+        "18": "1984年，中英聯合聲明簽署，97問題令人憂慮。",
+        "22": "香港股市大升，身邊人人炒股。",
+        "25": "樓價每年升兩成，入市係投資唔係負擔。",
+        "30": "97將至，朋友開始移民加拿大同澳洲。",
+        "35": "97回歸後，金融風暴令樓市大跌。"
+      }
+    },
+    {
+      "id": "sixties",
+      "name": "獅子山下",
+      "years": "1960年代",
+      "icon": "🕯️",
+      "description": "物質貧乏但遍地黃金。只要肯拼命，白手興家唔係夢。",
+      "difficulty": "Hardcore",
+      "difficultyStars": 5,
+      "themeColor": "#633806",
+      "startingBank": 500,
+      "annualLivingCost": 1200,
+      "salaryMultiplier": 0.01,
+      "propertyPriceMultiplier": 0.005,
+      "highlights": [
+        "從木屋區出發",
+        "工廠妹/地盤工",
+        "白手興家"
+      ],
+      "isLocked": true,
+      "availableJobIds": [
+        "factory_worker",
+        "construction",
+        "street_vendor",
+        "tailor",
+        "fisherman",
+        "domestic_helper"
+      ],
+      "ageEvents": {
+        "18": "1967年，香港社會動盪，但獅子山精神正在孕育。",
+        "22": "你搵到份穩定工作，係呢個年代嘅大成就。",
+        "25": "工廠區蓬勃發展，製造業係香港嘅命脈。",
+        "30": "你攢到第一桶金，考慮置業。",
+        "35": "香港經濟起飛，你趕上咗好時代。"
+      }
+    }
+  ]
+}
