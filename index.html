@@ -34,10 +34,24 @@
   <meta name="theme-color" content="#1A1A2E">
 
   <script>
-    (function markEmbeddedFrame() {
-      if (window.top !== window.self) {
-        document.documentElement.classList.add("is-embedded-frame");
+    (function allowOnlyApprovedEmbedders() {
+      const redirectUrl = "https://hklifesim.online/";
+      const allowedHosts = new Set(["hklifesim.online", "localhost"]);
+
+      try {
+        const parentUrl = new URL(document.referrer);
+        if (window.top !== window.self && allowedHosts.has(parentUrl.hostname)) {
+          document.documentElement.classList.add("is-embedded-frame");
+          return;
+        }
+      } catch {
+        // A missing or malformed referrer is not an approved embedding.
       }
+
+      // GitHub Pages serves this project statically, so it cannot inspect the
+      // Referer header. This is a browser-side fallback; server.mjs performs
+      // the actual HTTP 301 when the project is served by Node.
+      window.location.replace(redirectUrl);
     })();
   </script>
 
@@ -54,7 +68,7 @@
 
   <!-- Flutter Web Setup -->
   <script>
-    const serviceWorkerVersion = "2026070902";
+    const serviceWorkerVersion = "2026071101";
   </script>
   <script src="i18n-loader.js"></script>
   <script src="flutter.js" defer></script>

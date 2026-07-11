@@ -4,6 +4,8 @@ import { extname, join, normalize, resolve } from "node:path";
 
 const root = resolve(process.cwd());
 const port = Number(process.env.PORT || 4173);
+const redirectUrl = "https://hklifesim.online/";
+const allowedEmbedderHosts = new Set(["hklifesim.online", "localhost"]);
 
 const mimeTypes = {
   ".bin": "application/octet-stream",
@@ -38,6 +40,26 @@ function resolveRequestPath(url) {
   return extname(requested) ? null : join(root, "index.html");
 }
 
+function isAllowedEmbedder(referer) {
+  if (!referer) {
+    return false;
+  }
+
+  try {
+    const url = new URL(referer);
+    return (
+      (url.protocol === "https:" || url.protocol === "http:") &&
+      allowedEmbedderHosts.has(url.hostname)
+    );
+  } catch {
+    return false;
+  }
+}
+
+function isHtmlDocument(filePath) {
+  return filePath.endsWith(".html");
+}
+
 const server = createServer((req, res) => {
   if (req.method !== "GET" && req.method !== "HEAD") {
     res.writeHead(405);
@@ -53,10 +75,30 @@ const server = createServer((req, res) => {
     return;
   }
 
+  // The initial iframe navigation carries its parent page in Referer.  Only
+  // serve HTML to the official site or a local development host; assets must
+  // remain accessible because their Referer is the player itself.
+  if (isHtmlDocument(filePath) && !isAllowedEmbedder(req.headers.referer)) {
+    res.writeHead(301, {
+      Location: redirectUrl,
+      "Cache-Control": "no-store",
+      Vary: "Referer"
+    });
+    res.end();
+    return;
+  }
+
   const headers = {
     "Content-Type": mimeTypes[extname(filePath)] || "application/octet-stream",
-    "Cache-Control": filePath.endsWith("index.html") ? "no-cache" : "public, max-age=31536000"
+    "Cache-Control": filePath.endsWith("index.html") ? "no-cache" : "public, max-age=31536000",
+    "Content-Security-Policy": isHtmlDocument(filePath)
+      ? "frame-ancestors https://hklifesim.online http://localhost:* https://localhost:*"
+      : undefined
   };
+
+  if (!headers["Content-Security-Policy"]) {
+    delete headers["Content-Security-Policy"];
+  }
 
   res.writeHead(200, headers);
 
